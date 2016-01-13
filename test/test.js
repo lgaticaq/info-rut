@@ -72,7 +72,7 @@ describe('info-rut', () => {
     })
   })
 
-  describe('getRut valid rut', () => {
+  describe('getRut valid name', () => {
 
     const name = 'perez'
 
@@ -95,7 +95,7 @@ describe('info-rut', () => {
         })
     })
 
-    it('should return a full name (callback)', (done) => {
+    it('should return a array of results (callback)', (done) => {
       getRut(name, (err, results) => {
         expect(err).to.be.null
         expect(results).to.eql([
@@ -106,7 +106,7 @@ describe('info-rut', () => {
       })
     })
 
-    it('should return a full name (promise)', (done) => {
+    it('should return a array of results (promise)', (done) => {
       getRut(name).then((results) => {
         expect(results).to.eql([
           {fullName: 'JUAN PEREZ', rut: '11111111-1', url: 'http://datos.24x7.cl/rut/11111111-1/'},
@@ -120,7 +120,7 @@ describe('info-rut', () => {
     })
   })
 
-  describe('getRut invalid rut', () => {
+  describe('getRut invalid name', () => {
 
     const name = 'asdf'
 
@@ -137,7 +137,7 @@ describe('info-rut', () => {
         .reply(200, {status: 'fail', value: []})
     })
 
-    it('should return a error (callback)', (done) => {
+    it('should return a empty results (callback)', (done) => {
       getRut(name, (err, results) => {
         expect(err).to.be.null
         expect(results).to.eql([])
@@ -145,7 +145,7 @@ describe('info-rut', () => {
       })
     })
 
-    it('should return a error (promise)', (done) => {
+    it('should return a empty results (promise)', (done) => {
       getRut(name).then((results) => {
         expect(results).to.eql([])
         done()
