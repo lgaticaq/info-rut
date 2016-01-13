@@ -1,6 +1,6 @@
 {
   "name": "info-rut",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Get full name from a valid RUT",
   "main": "lib",
   "scripts": {
