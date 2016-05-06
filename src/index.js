@@ -1,52 +1,44 @@
 'use strict';
 
-import rp from 'request-promise';
-import cheerio from 'cheerio';
-import Q from 'q';
-import Rut from 'rutjs';
+const rp = require('request-promise');
+const cheerio = require('cheerio');
+const Rut = require('rutjs');
 
-const getFullName = (data, callback) => {
-  const deferred = Q.defer();
+const getFullName = data => {
   const _rut = new Rut(data);
   const rut = _rut.isValid ? _rut.getNiceRut(false) : '1';
 
   const options = {
     url: `http://datos.24x7.cl/rut/${rut}/`,
-    transform: (body) => cheerio.load(body)
+    transform: cheerio.load
   };
-  rp(options).then($ => {
+  return rp(options).then($ => {
     const fullName = $('h1:contains(Nombre)').next().text();
-    if (fullName === '') {
-      deferred.reject(new Error('Not found full name'));
-    } else {
-      deferred.resolve(fullName);
-    }
-  }).catch(deferred.reject);
-
-  deferred.promise.nodeify(callback);
-
-  return deferred.promise;
+    if (fullName === '') throw new Error('Not found full name');
+    return fullName;
+  });
 };
 
-const getRut = (name, callback) => {
-  const deferred = Q.defer();
+const getRut = name => {
   const options = {
-    url: `http://datos.24x7.cl/`,
-    transform: (body) => cheerio.load(body)
+    url: 'http://datos.24x7.cl/',
+    transform: cheerio.load
   };
   const rpap = rp.defaults({jar: true});
-  rpap(options).then($ => {
-    const csrf = $('input[name=csrfmiddlewaretoken]').val();
-    const options = {
-      method: 'POST',
-      url: 'http://datos.24x7.cl/get_generic_ajax/',
-      form: {
-        entrada: name,
-        csrfmiddlewaretoken: csrf
-      },
-      json: true
-    };
-    rpap(options).then(data => {
+  return rpap(options)
+    .then($ => $('input[name=csrfmiddlewaretoken]').val())
+    .then(csrf => {
+      const options = {
+        method: 'POST',
+        url: 'http://datos.24x7.cl/get_generic_ajax/',
+        form: {
+          entrada: name,
+          csrfmiddlewaretoken: csrf
+        },
+        json: true
+      };
+      return rpap(options);
+    }).then(data => {
       let results = [];
       if (data.status === 'success') {
         results = data.value.map(x => {
@@ -57,13 +49,8 @@ const getRut = (name, callback) => {
           };
         });
       }
-      deferred.resolve(results);
+      return results;
     });
-  }).catch(deferred.reject);
-
-  deferred.promise.nodeify(callback);
-
-  return deferred.promise;
 };
 
 module.exports = {

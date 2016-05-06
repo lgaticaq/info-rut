@@ -1,87 +1,68 @@
-'use strict'
+'use strict';
 
-import path from 'path'
-
-import {expect} from 'chai'
-import nock from 'nock'
-
-import {getFullName, getRut} from '../lib'
+const path = require('path');
+const expect = require('chai').expect;
+const nock = require('nock');
+const lib = require('../src');
 
 describe('info-rut', () => {
 
 
   describe('getFullName valid rut', () => {
 
-    const rut = '11111111-1'
+    const rut = '11111111-1';
 
     beforeEach(() => {
-      nock.disableNetConnect()
+      nock.disableNetConnect();
       nock('http://datos.24x7.cl')
         .get(`/rut/${rut}/`)
-        .replyWithFile(200, path.join(__dirname, 'valid.html'))
-    })
+        .replyWithFile(200, path.join(__dirname, 'valid.html'));
+    });
 
-    it('should return a full name (callback)', (done) => {
-      getFullName(rut, (err, fullName) => {
-        expect(err).to.be.null
-        expect(fullName).to.eql('Anonymous')
-        done()
-      })
-    })
-
-    it('should return a full name (promise)', (done) => {
-      getFullName(rut).then((fullName) => {
-        expect(fullName).to.eql('Anonymous')
-        done()
-      }).fail((err) => {
-        expect(err).to.be.null
-        done()
-      })
-    })
-  })
+    it('should return a full name', done => {
+      lib.getFullName(rut).then(fullName => {
+        expect(fullName).to.eql('Anonymous');
+        done();
+      }).catch(err => {
+        expect(err).to.be.null;
+        done();
+      });
+    });
+  });
 
   describe('getFullName invalid rut', () => {
 
-    const rut = '1'
+    const rut = '1';
 
     beforeEach(() => {
-      nock.disableNetConnect()
+      nock.disableNetConnect();
       nock('http://datos.24x7.cl')
         .get(`/rut/${rut}/`)
-        .replyWithFile(404, path.join(__dirname, 'invalid.html'))
-    })
+        .replyWithFile(404, path.join(__dirname, 'invalid.html'));
+    });
 
-    it('should return a error (callback)', (done) => {
-      getFullName(rut, (err, fullName) => {
-        var fn = function () { throw err; }
+    it('should return a error', done => {
+      lib.getFullName(rut).then(fullName => {
+        expect(fullName).to.be.undefined;
+        done();
+      }).catch(err => {
+        var fn = function () { throw err; };
         expect(fn).to.throw(Error);
-        expect(fullName).to.be.undefined
-        done()
-      })
-    })
-
-    it('should return a error (promise)', (done) => {
-      getFullName(rut).then((fullName) => {
-        expect(fullName).to.be.undefined
-        done()
-      }).fail((err) => {
-        var fn = function () { throw err; }
-        expect(fn).to.throw(Error);
-        done()
-      })
-    })
-  })
+        done();
+      });
+    });
+  });
 
   describe('getRut valid name', () => {
 
-    const name = 'perez'
+    const name = 'perez';
 
     beforeEach(() => {
-      nock.disableNetConnect()
+      nock.disableNetConnect();
       const form = {
         entrada: name,
         csrfmiddlewaretoken: 'asdf'
-      }
+      };
       nock('http://datos.24x7.cl')
         .get('/')
         .replyWithFile(200, path.join(__dirname, 'form.html'))
@@ -92,67 +73,48 @@ describe('info-rut', () => {
             {name: 'JUAN PEREZ', rut: '11111111-1'},
             {name: 'PEDRO PEREZ', rut: '22222222-2'}
           ]
-        })
-    })
+        });
+    });
 
-    it('should return a array of results (callback)', (done) => {
-      getRut(name, (err, results) => {
-        expect(err).to.be.null
+    it('should return a array of results (promise)', done => {
+      lib.getRut(name).then(results => {
         expect(results).to.eql([
           {fullName: 'JUAN PEREZ', rut: '11111111-1', url: 'http://datos.24x7.cl/rut/11111111-1/'},
           {fullName: 'PEDRO PEREZ', rut: '22222222-2', url: 'http://datos.24x7.cl/rut/22222222-2/'}
-        ])
-        done()
-      })
-    })
-
-    it('should return a array of results (promise)', (done) => {
-      getRut(name).then((results) => {
-        expect(results).to.eql([
-          {fullName: 'JUAN PEREZ', rut: '11111111-1', url: 'http://datos.24x7.cl/rut/11111111-1/'},
-          {fullName: 'PEDRO PEREZ', rut: '22222222-2', url: 'http://datos.24x7.cl/rut/22222222-2/'}
-        ])
-        done()
-      }).fail((err) => {
-        expect(err).to.be.null
-        done()
-      })
-    })
-  })
+        ]);
+        done();
+      }).catch(err => {
+        expect(err).to.be.null;
+        done();
+      });
+    });
+  });
 
   describe('getRut invalid name', () => {
 
-    const name = 'asdf'
+    const name = 'asdf';
 
     beforeEach(() => {
-      nock.disableNetConnect()
+      nock.disableNetConnect();
       const form = {
         entrada: name,
         csrfmiddlewaretoken: 'asdf'
-      }
+      };
       nock('http://datos.24x7.cl')
         .get('/')
         .replyWithFile(200, path.join(__dirname, 'form.html'))
         .post('/get_generic_ajax/', form)
-        .reply(200, {status: 'fail', value: []})
-    })
+        .reply(200, {status: 'fail', value: []});
+    });
 
-    it('should return a empty results (callback)', (done) => {
-      getRut(name, (err, results) => {
-        expect(err).to.be.null
-        expect(results).to.eql([])
-        done()
-      })
-    })
-
-    it('should return a empty results (promise)', (done) => {
-      getRut(name).then((results) => {
-        expect(results).to.eql([])
-        done()
-      }).fail((err) => {
-        expect(err).to.be.null
-        done()
-      })
-    })
-  })
-})
+    it('should return a empty results', done => {
+      lib.getRut(name).then(results => {
+        expect(results).to.eql([]);
+        done();
+      }).catch(err => {
+        expect(err).to.be.null;
+        done();
+      });
+    });
+  });
+});
