@@ -1,3 +1,23 @@
+#### 2.0.1 (2016-7-30)
+
+##### Chores
+
+* **package:**
+  * Update dependencies ([0fd08d2f](https://github.com/lgaticaq/info-rut/commit/0fd08d2fbd62000064e92923f3878746ff5548a2))
+  * update request-promise to version 4.0.2 ([4d0382ec](https://github.com/lgaticaq/info-rut/commit/4d0382ec89de98f17dd4c0fa98d9bc220ddc85c9))
+  * update eslint to version 3.0.0 ([ac49726b](https://github.com/lgaticaq/info-rut/commit/ac49726b7d0e4fb2be9f593b21a5be1eb355d00e))
+  * update eslint to version 2.13.0 ([1cfdc5b9](https://github.com/lgaticaq/info-rut/commit/1cfdc5b9bd9bdc4d6f9727d43e7d82a5035e2095))
+  * update codeclimate-test-reporter to version 0.3.3 ([4f32be52](https://github.com/lgaticaq/info-rut/commit/4f32be5291891494e1569eb7ca85f8cf98974031))
+  * update cheerio to version 0.21.0 ([5c08e673](https://github.com/lgaticaq/info-rut/commit/5c08e673d0cae43dfee85d165ff0647c5f7653e8))
+  * update mocha to version 2.5.0 ([84864f7d](https://github.com/lgaticaq/info-rut/commit/84864f7dc02a21a13963dd3b23b5a904a6008296))
+
+##### Bug Fixes
+
+* **scrapping:**
+  * Remove ads from results ([d0a1c86d](https://github.com/lgaticaq/info-rut/commit/d0a1c86d97eba361617f7ada9eec00b541345de6))
+  * Add getNiceRut to results ([9bd64db1](https://github.com/lgaticaq/info-rut/commit/9bd64db14cde9d1b9e5b83378b87a51f1dadaeee))
+* **package:** Downgrade cheerio to v0.20.0 ([5b1c9c71](https://github.com/lgaticaq/info-rut/commit/5b1c9c71958257b146498f0fe548f55cc1acc1cf))
+
 ## 2.0.0 (2016-05-06)
 
 * Refactor ([099af70](https://github.com/lgaticaq/info-rut/commit/099af70))
