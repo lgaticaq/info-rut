@@ -70,8 +70,8 @@ describe('info-rut', () => {
         .reply(200, {
           status: 'success',
           value: [
-            {name: 'JUAN PEREZ', rut: 111111111},
-            {name: 'PEDRO PEREZ', rut: 222222222}
+            {name: 'JUAN PEREZ', rut: 11111111},
+            {name: 'PEDRO PEREZ', rut: 22222222}
           ]
         });
     });
