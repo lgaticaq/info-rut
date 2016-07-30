@@ -15,7 +15,7 @@ const getFullName = data => {
   return rp(options).then($ => {
     const fullName = $('h1:contains(Nombre)').next().text();
     if (fullName === '') throw new Error('Not found full name');
-    return fullName;
+    return fullName.split(', Buscas')[0];
   });
 };
 
