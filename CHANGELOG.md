@@ -1,3 +1,9 @@
+#### 2.0.2 (2016-7-30)
+
+##### Bug Fixes
+
+* **getRut:** Fix use getNiceRut ([61bdc424](https://github.com/lgaticaq/info-rut/commit/61bdc424b9ba0943edee3eabb412c8b507196d2a))
+
 #### 2.0.1 (2016-7-30)
 
 ##### Chores
