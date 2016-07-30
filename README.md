@@ -7,9 +7,8 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/lgaticaq/info-rut.svg?style=flat-square)](https://codeclimate.com/github/lgaticaq/info-rut)
 [![dependency Status](https://img.shields.io/david/lgaticaq/info-rut.svg?style=flat-square)](https://david-dm.org/lgaticaq/info-rut#info=dependencies)
 [![devDependency Status](https://img.shields.io/david/dev/lgaticaq/info-rut.svg?style=flat-square)](https://david-dm.org/lgaticaq/info-rut#info=devDependencies)
-[![Join the chat at https://gitter.im/lgaticaq/info-rut](https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg?style=flat-square)](https://gitter.im/lgaticaq/info-rut?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Get full name from a valid RUT and RUT from full name
+> Get full name from a valid RUT and RUT from full name
 
 ## Installation
 
@@ -30,3 +29,7 @@ infoRut.getFullName(rut).then(console.log).catch(console.error)
 const name = 'juan perez'
 infoRut.getRut(name).then(console.log).catch(console.error)
 ```
+
+## License
+
+[MIT](https://tldrlegal.com/license/mit-license)
