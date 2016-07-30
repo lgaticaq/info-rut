@@ -42,10 +42,11 @@ const getRut = name => {
       let results = [];
       if (data.status === 'success') {
         results = data.value.map(x => {
+          const rut = new Rut(x.rut);
           return {
-            url: `http://datos.24x7.cl/rut/${x.rut}/`,
+            url: `http://datos.24x7.cl/rut/${rut.getNiceRut(false)}/`,
             fullName: x.name,
-            rut: x.rut
+            rut: rut.getNiceRut(false)
           };
         });
       }
