@@ -1,3 +1,9 @@
+#### 2.0.3 (2016-7-30)
+
+##### Bug Fixes
+
+* **getRut:** Fix parse ruts ([be9a06c1](https://github.com/lgaticaq/info-rut/commit/be9a06c1461e123e9528599352b6eb371a15c66a))
+
 #### 2.0.2 (2016-7-30)
 
 ##### Bug Fixes
