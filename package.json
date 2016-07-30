@@ -4,7 +4,7 @@
   "description": "Get full name from a valid RUT",
   "main": "src",
   "scripts": {
-    "pretest": "eslint src",
+    "pretest": "eslint .",
     "test": "istanbul cover _mocha",
     "coveralls": "coveralls < coverage/lcov.info",
     "codeclimate": "codeclimate-test-reporter < coverage/lcov.info"
@@ -33,10 +33,10 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.3.3",
-    "coveralls": "^2.11.9",
-    "eslint": "^3.0.0",
-    "istanbul": "^0.4.3",
-    "mocha": "^2.5.0",
+    "coveralls": "^2.11.12",
+    "eslint": "^3.2.0",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
     "nock": "^8.0.0"
   },
   "eslintConfig": {
