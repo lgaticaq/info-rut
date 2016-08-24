@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/lgaticaq/info-rut#readme",
   "dependencies": {
-    "cheerio": "^0.20.0",
+    "cheerio": "^0.22.0",
     "request-promise": "^4.0.2",
     "rutjs": "^0.1.1"
   },
