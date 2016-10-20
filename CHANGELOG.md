@@ -1,3 +1,13 @@
+#### 2.0.4 (2016-10-20)
+
+##### Chores
+
+* **package:**
+  * Add request and update dependencies ([4579867e](https://github.com/lgaticaq/info-rut/commit/4579867efbdb8b9cb0644b0f2895656051ac11a9))
+  * update codeclimate-test-reporter to version 0.4.0 ([ba760d0a](https://github.com/lgaticaq/info-rut/commit/ba760d0a3d515e3d85495303a96a386322884f89))
+  * update cheerio to version 0.22.0 ([2f4bba4f](https://github.com/lgaticaq/info-rut/commit/2f4bba4f21a3a435b050d41d78a5a6bdac024a1b))
+  * update mocha to version 3.0.0 ([63520e03](https://github.com/lgaticaq/info-rut/commit/63520e035bfa39e2ff11781f421fb6322f912d6c))
+
 #### 2.0.3 (2016-7-30)
 
 ##### Bug Fixes
