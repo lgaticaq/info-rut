@@ -1,3 +1,18 @@
+## 3.0.0 (2016-10-30)
+
+##### Chores
+
+* **example:** Update examples ([00cae133](https://github.com/lgaticaq/info-rut/commit/00cae133f20046ecf97fcdf1b1e5159b9ed8d2b2))
+* **travis:** Add support to node v7 and yarn ([03f6bbea](https://github.com/lgaticaq/info-rut/commit/03f6bbead149fb67d3f1eb92e69a19ecbc83ce8e))
+* **package:**
+  * Add fuse.js ([569a5cd2](https://github.com/lgaticaq/info-rut/commit/569a5cd29fd8c920c09ab50b8ed15a344c5262ad))
+  * Update dependencies ([961dcd1d](https://github.com/lgaticaq/info-rut/commit/961dcd1d8c2faacb8f62df9ad76810d26419b73f))
+  * update nock to version 9.0.0 ([3916c83a](https://github.com/lgaticaq/info-rut/commit/3916c83af132e25f407b3ba4f4f75c82c2d0ac94))
+
+##### New Features
+
+* **rut:** Split search person and enterprise rut. ([f4c4d753](https://github.com/lgaticaq/info-rut/commit/f4c4d753aef78ac77c79e313d4f16375b22b656a))
+
 #### 2.0.4 (2016-10-20)
 
 ##### Chores
