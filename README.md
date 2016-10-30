@@ -27,7 +27,8 @@ const rut = '11111111-1'
 infoRut.getFullName(rut).then(console.log).catch(console.error)
 
 const name = 'juan perez'
-infoRut.getRut(name).then(console.log).catch(console.error)
+infoRut.getPersonRut(name).then(console.log).catch(console.error)
+infoRut.getEnterpriseRut(name).then(console.log).catch(console.error)
 ```
 
 ## License
