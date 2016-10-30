@@ -658,6 +658,10 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
+fuse.js:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-2.5.0.tgz#98295c2ac1684edbba22250d7049cb6f033e95ce"
+
 generate-changelog:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/generate-changelog/-/generate-changelog-1.0.2.tgz#b26116d531a6ac4536a90ef5634121a55088d0eb"
