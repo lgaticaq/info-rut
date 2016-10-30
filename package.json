@@ -30,7 +30,7 @@
   "homepage": "https://github.com/lgaticaq/info-rut#readme",
   "dependencies": {
     "cheerio": "^0.22.0",
-    "request": "^2.75.0",
+    "request": "^2.76.0",
     "request-promise": "^4.1.1",
     "rutjs": "^0.1.1"
   },
@@ -38,11 +38,11 @@
     "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.4.0",
     "coveralls": "^2.11.14",
-    "eslint": "^3.8.1",
+    "eslint": "^3.9.0",
     "generate-changelog": "^1.0.2",
     "istanbul": "^0.4.5",
     "mocha": "^3.1.2",
-    "nock": "^9.0.0"
+    "nock": "^9.0.2"
   },
   "eslintConfig": {
     "env": {
