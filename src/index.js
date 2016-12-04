@@ -75,7 +75,7 @@ const getRut = name => {
 };
 
 const isEnterprise = rut => {
-  return rut.length === 12 && parseInt(rut[0], 10) > 6;
+  return rut.length === 12 && parseInt(rut[0], 10) > 5;
 };
 
 const getPersonRut = name => {
