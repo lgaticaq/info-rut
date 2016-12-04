@@ -1,3 +1,15 @@
+#### 3.0.1 (2016-12-4)
+
+##### Chores
+
+* **travis:** Remove old node version ([18b4f88b](https://github.com/lgaticaq/info-rut/commit/18b4f88b3e8e5494e815d09ba72d11b9b0fa04e4))
+* **npm:** Update ignores ([810b51ae](https://github.com/lgaticaq/info-rut/commit/810b51ae0bd66105b223d40752cca3d314df014f))
+* **package:** Update dependencies ([468f6f07](https://github.com/lgaticaq/info-rut/commit/468f6f0796fe3b9d8c6f34fc3c2d9d08a5c0f01c))
+
+##### Bug Fixes
+
+* **rut:** Fix rut range in isEnterprise ([39fa80c6](https://github.com/lgaticaq/info-rut/commit/39fa80c63b9e782186c05def0769ad14aa56409b))
+
 ## 3.0.0 (2016-10-30)
 
 ##### Chores
