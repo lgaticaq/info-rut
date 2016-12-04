@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-  - "4"
-  - "5"
   - "6"
   - "7"
 notifications:
@@ -12,4 +10,4 @@ after_success:
 before_install:
   - npm i -g yarn
 install:
-  - yarn
+  - yarn install
