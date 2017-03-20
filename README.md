@@ -18,7 +18,7 @@ npm i -S info-rut
 
 ## Use
 
-[Try on Tonic](https://tonicdev.com/npm/info-rut)
+[Try on RunKit](https://runkit.com/npm/info-rut)
 ```js
 const infoRut = require('info-rut')
 
