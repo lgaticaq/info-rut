@@ -5,8 +5,9 @@ const cheerio = require('cheerio');
 const Rut = require('rutjs');
 const Fuse = require('fuse.js');
 
-const options = {transform: cheerio.load};
-const domain = 'http://chile.rutificador.com';
+const userAgent = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
+const options = {transform: cheerio.load, headers: {'User-Agent': userAgent}};
+const domain = 'https://chile.rutificador.com';
 
 const getFullName = data => {
   const _rut = new Rut(data);
@@ -15,7 +16,7 @@ const getFullName = data => {
   return rp(options).then($ => {
     const fullName = $('h1:contains(Nombre)').next().text();
     if (fullName === '') throw new Error('Not found full name');
-    return fullName.split(', Buscas')[0];
+    return reverse(fullName.split(', Buscas').shift());
   });
 };
 
@@ -52,10 +53,16 @@ const getRut = name => {
         method: 'POST',
         url: `${domain}/get_generic_ajax/`,
         form: {
-          entrada: name,
-          csrfmiddlewaretoken: csrf
+          csrfmiddlewaretoken: csrf,
+          entrada: name
         },
-        json: true
+        json: true,
+        headers: {
+          'User-Agent': userAgent,
+          Origin: domain,
+          'X-Requested-With': 'XMLHttpRequest',
+          Referer: `${domain}/`
+        }
       };
       return rpap(options);
     }).then(data => {

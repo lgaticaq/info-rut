@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const nock = require('nock');
 const lib = require('../src');
 
-const domain = 'http://chile.rutificador.com';
+const domain = 'https://chile.rutificador.com';
 
 describe('info-rut', () => {
   describe('getFullName valid rut', () => {
