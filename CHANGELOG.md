@@ -1,3 +1,21 @@
+#### 3.0.2 (2017-3-20)
+
+##### Chores
+
+* **package:**
+  * Add yarn.lock ([1df32aed](https://github.com/lgaticaq/info-rut/commit/1df32aed5312b8f8794cfa91be067b95ce65bfe1))
+  * Update dependencies ([f700eec1](https://github.com/lgaticaq/info-rut/commit/f700eec19105df8056bb9e8c2e1ed720f4c626d9))
+* **travis:** Add cache yarn ([8b660a9a](https://github.com/lgaticaq/info-rut/commit/8b660a9a7276e6441d11bfd2e6f51d12ddd6ed0d))
+
+##### Documentation Changes
+
+* **README:** Fox RunKit url ([f970d062](https://github.com/lgaticaq/info-rut/commit/f970d062a224c90abf68b8cc65034f587799f733))
+* **LICENSE:** Update year ([cdecf2a2](https://github.com/lgaticaq/info-rut/commit/cdecf2a293217b1b995f2071429fbb23a8c1989a))
+
+##### Bug Fixes
+
+* **domain:** Fix domain and get new data ([dfe04494](https://github.com/lgaticaq/info-rut/commit/dfe04494060a055c5c1dbce0d02553235283dc79))
+
 #### 3.0.1 (2016-12-4)
 
 ##### Chores
