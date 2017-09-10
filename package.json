@@ -42,7 +42,7 @@
     "eslint": "4.6.1",
     "generate-changelog": "1.4.0",
     "istanbul": "0.4.5",
-    "mocha": "3.5.0",
+    "mocha": "3.5.1",
     "nock": "9.0.14"
   },
   "eslintConfig": {
