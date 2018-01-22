@@ -1,3 +1,64 @@
+## 4.0.0 (2018-01-22)
+
+##### Chores
+
+* **deps:**
+  *  update dependency eslint to v4.16.0 ([9d85826f](https://github.com/lgaticaq/info-rut/commit/9d85826f6ad85d8a328082904468327d610783af))
+  *  update dependency mocha to v4.1.0 ([1f3c5f20](https://github.com/lgaticaq/info-rut/commit/1f3c5f2084ea3c8ec7cb07700683a5adaf50bf80))
+  *  update dependency eslint to v4.14.0 ([f38e5cd1](https://github.com/lgaticaq/info-rut/commit/f38e5cd1c9089e159d0f0b66d06f5d93bed4ea0d))
+  *  update dependency nock to v9.1.5 ([fe4e9bea](https://github.com/lgaticaq/info-rut/commit/fe4e9bea553388071ba15a1fb22edd974662927e))
+  *  update dependency generate-changelog to v1.7.0 ([396a2918](https://github.com/lgaticaq/info-rut/commit/396a2918edde19288bafefc65d399a6483f7e811))
+  *  update dependency eslint to v4.13.1 ([ae44e080](https://github.com/lgaticaq/info-rut/commit/ae44e0803a3e07055e091b9c4e8f072e2bae18a5))
+  *  update dependency eslint to v4.13.0 ([bd7b1162](https://github.com/lgaticaq/info-rut/commit/bd7b11623b91fe363e62f9741e83405b4ba0f391))
+  *  update dependency nock to v9.1.4 ([da8cb530](https://github.com/lgaticaq/info-rut/commit/da8cb53014abb3139ebf7700866d213ddf624b59))
+  *  update dependency eslint to v4.12.1 ([599eb4b5](https://github.com/lgaticaq/info-rut/commit/599eb4b520c1a9bc4250c9d15eb1ae1bdff3a1b7))
+  *  update dependency eslint to v4.12.0 ([159abd44](https://github.com/lgaticaq/info-rut/commit/159abd4463446905f9d774ed13e2d2cc7d6619b2))
+  *  update dependency nock to v9.1.3 ([046eade0](https://github.com/lgaticaq/info-rut/commit/046eade01bcdf12bfb4dd6ebb0bbc6f125b311f6))
+  *  update dependency nock to v9.1.2 ([f8902dd7](https://github.com/lgaticaq/info-rut/commit/f8902dd748c28f09a64efe1d9764fadf1bdc0b99))
+  *  update dependency generate-changelog to v1.6.0 ([50b0561b](https://github.com/lgaticaq/info-rut/commit/50b0561bf4664d30facd64ba8f5ec1e49c789a4c))
+  *  update dependency eslint to v4.11.0 ([f1a65d9f](https://github.com/lgaticaq/info-rut/commit/f1a65d9ff3fb9da3fb076cb24d28b65d9259a632))
+  *  update dependency nock to v9.1.0 ([32435da4](https://github.com/lgaticaq/info-rut/commit/32435da4488554d276587fc5210b7d349a5ee0cb))
+  *  update dependency nock to v9.0.28 ([b3d94d47](https://github.com/lgaticaq/info-rut/commit/b3d94d47a91de974624f4afdeb0a0d36dba084c1))
+  *  update dependency nock to v9.0.27 ([3dde3e3a](https://github.com/lgaticaq/info-rut/commit/3dde3e3a88d1563d044d146c71ad8fe16aa9e922))
+  *  update dependency eslint to v4.10.0 ([1ede6ee1](https://github.com/lgaticaq/info-rut/commit/1ede6ee15cad11fe5f7077b5dc8210159893b6e7))
+  *  update dependency nock to v9.0.25 ([cb5225d1](https://github.com/lgaticaq/info-rut/commit/cb5225d1813c05336f10bc73e6e96b3b32708306))
+  *  update dependency nock to v9.0.24 ([2da40b73](https://github.com/lgaticaq/info-rut/commit/2da40b7329c5c96227618955c296e38a7b3cc4e7))
+  *  update dependency eslint to v4.9.0 ([054b7397](https://github.com/lgaticaq/info-rut/commit/054b7397e0f53b6acf8d30184630f45398bdf9f1))
+  *  update dependency mocha to v4.0.1 ([522d36ad](https://github.com/lgaticaq/info-rut/commit/522d36adeacda201c1cfaddf8d4b713161a38054))
+  *  update dependency mocha to v4.0.0 ([2520a93f](https://github.com/lgaticaq/info-rut/commit/2520a93fdca59d1af6ae0d5cd895740395d0b13e))
+  *  update dependency eslint to v4.8.0 ([66023564](https://github.com/lgaticaq/info-rut/commit/660235649373b7ec79caf3b00403f98f077112a6))
+  *  update dependency coveralls to v3.0.0 ([5ce805b7](https://github.com/lgaticaq/info-rut/commit/5ce805b770b6319494d90522307c5b7fecec9a41))
+  *  update dependency coveralls to v2.13.3 ([12e3c7e3](https://github.com/lgaticaq/info-rut/commit/12e3c7e3b6d8261a1026979d5635f23efa1705f9))
+  *  update dependency nock to v9.0.22 ([80a0f0ec](https://github.com/lgaticaq/info-rut/commit/80a0f0ecadf22e7b6cb2caf00d116f3eba902022))
+  *  update dependency coveralls to v2.13.2 ([65b2da2c](https://github.com/lgaticaq/info-rut/commit/65b2da2c34fbe257571f84473936383ea7fe45ad))
+  *  update dependency nock to v9.0.21 ([0b43dba2](https://github.com/lgaticaq/info-rut/commit/0b43dba2362ee215b1020188c016747c3a729659))
+  *  update dependency generate-changelog to v1.5.0 ([9ad8781c](https://github.com/lgaticaq/info-rut/commit/9ad8781c36cee6f43ae2d55118a8567fad591b36))
+  *  update dependency eslint to v4.7.2 ([b43f1bd7](https://github.com/lgaticaq/info-rut/commit/b43f1bd793801baee557dc4be07692221fc80550))
+  *  update dependency eslint to v4.7.1 ([372eb4f2](https://github.com/lgaticaq/info-rut/commit/372eb4f29eb5d70b70f4f65461408f157eb2e7d7))
+  *  update dependency eslint to v4.7.0 ([77dca655](https://github.com/lgaticaq/info-rut/commit/77dca655f0d14be2c455279f96b7d6e2ce8c714f))
+  *  update dependency mocha to v3.5.3 ([9c8d1adf](https://github.com/lgaticaq/info-rut/commit/9c8d1adf6a62dd90f6ff6d2137b42184dcd8874e))
+  *  update dependency mocha to v3.5.2 ([eb286e34](https://github.com/lgaticaq/info-rut/commit/eb286e34f92fb7bf53bbda6b74721c9f023ecccc))
+  *  update dependency mocha to v3.5.1 ([e222bf69](https://github.com/lgaticaq/info-rut/commit/e222bf69641d45d5761d177707345d58332c7644))
+* **package:**
+  *  update eslint to version 4.7.0 ([b89a7236](https://github.com/lgaticaq/info-rut/commit/b89a7236a66853d582fea8ae1994e0f3f7174167))
+  *  update eslint to version 4.1.0 ([a579e2e6](https://github.com/lgaticaq/info-rut/commit/a579e2e65df53263eca9cf33201fc684b2c0f3eb))
+  *  update codeclimate-test-reporter to version 0.5.0 ([5cb8c12c](https://github.com/lgaticaq/info-rut/commit/5cb8c12c07503c4a8b0f9b9461bcba44155e8451))
+  *  update chai to version 4.0.0 ([9e4235cf](https://github.com/lgaticaq/info-rut/commit/9e4235cf65be6362e1e99e49e64a69d7ab3a2d3d))
+
+##### New Features
+
+* **source:**  set new source to https://rutify.cl ([319dd428](https://github.com/lgaticaq/info-rut/commit/319dd4287263c05999eaf05069270c8dbbfa2e78))
+
+##### Bug Fixes
+
+* **package:**
+  *  update cheerio to version 1.0.0-rc.1 ([238d0f40](https://github.com/lgaticaq/info-rut/commit/238d0f40365d00effc92a6250d989ddb1a340d53))
+  *  update fuse.js to version 3.0.0 ([fd0ff41c](https://github.com/lgaticaq/info-rut/commit/fd0ff41cc90e5af086aa0cb3825c1e06384f46fd))
+
+##### Refactors
+
+* **deps:**  renovate pin dependencies packages ([f1eef2c9](https://github.com/lgaticaq/info-rut/commit/f1eef2c9db04ce04614a3e66b32f08fb371a3c16))
+
 #### 3.0.2 (2017-3-20)
 
 ##### Chores
