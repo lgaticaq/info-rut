@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/lgaticaq/info-rut#readme",
   "dependencies": {
-    "fuse.js": "3.2.1",
+    "fuse.js": "3.3.0",
     "rut.js": "1.0.1"
   },
   "devDependencies": {
