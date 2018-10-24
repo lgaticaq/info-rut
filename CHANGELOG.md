@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/lgaticaq/info-rut/compare/v4.0.0...v4.0.1) (2018-10-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency fuse.js to v3.2.1 ([4fbec8a](https://github.com/lgaticaq/info-rut/commit/4fbec8a))
+* **deps:** update dependency fuse.js to v3.3.0 ([838a2ef](https://github.com/lgaticaq/info-rut/commit/838a2ef))
+* **deps:** update dependency rut.js to v1.0.1 ([4cf9992](https://github.com/lgaticaq/info-rut/commit/4cf9992))
+
 ## 4.0.0 (2018-01-22)
 
 ##### Chores
