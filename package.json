@@ -84,7 +84,7 @@
   "renovate": {
     "automerge": "minor",
     "extends": [
-      ":library"
+      "config:js-lib"
     ]
   },
   "nyc": {
