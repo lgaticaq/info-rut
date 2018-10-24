@@ -6,7 +6,6 @@
   "scripts": {
     "lint": "eslint . --fix",
     "format": "prettier-standard 'src/**/*.js' 'test/**/*.js'",
-    "precommit": "lint-staged",
     "commit": "commit",
     "test": "nyc mocha --exit"
   },
@@ -61,6 +60,12 @@
     "coverage",
     "example.js"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "lint-staged": {
     "linters": {
       "src/**/*.js": [
