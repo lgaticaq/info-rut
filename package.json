@@ -51,7 +51,7 @@
     "npm-github-config": "2.0.0",
     "nyc": "13.1.0",
     "nyc-config-common": "1.0.1",
-    "prettier-standard": "8.0.1",
+    "prettier-standard": "9.1.1",
     "semantic-release": "15.13.3"
   },
   "eslintConfig": {
