@@ -49,7 +49,7 @@
     "mocha": "5.2.0",
     "nock": "10.0.6",
     "npm-github-config": "2.0.0",
-    "nyc": "13.2.0",
+    "nyc": "13.3.0",
     "nyc-config-common": "1.0.1",
     "prettier-standard": "8.0.1",
     "semantic-release": "15.13.3"
