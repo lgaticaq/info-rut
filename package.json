@@ -27,7 +27,7 @@
   "homepage": "https://github.com/lgaticaq/info-rut#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "fuse.js": "^3.3.0",
+    "fuse.js": "^3.4.2",
     "object.fromentries": "^2.0.0",
     "rut.js": "^1.0.1"
   },
