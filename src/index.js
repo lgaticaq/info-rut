@@ -7,6 +7,39 @@ const Fuse = require('fuse.js')
 const cheerio = require('cheerio')
 const fromEntries = require('object.fromentries')
 
+/**
+ * @typedef {Object} Params
+ * @property {string} type - Type (person, enterprise)
+ * @property {string} key - Key path (rut, name)
+ * @property {string} term - Search term
+ */
+/**
+ * @typedef {Object} Person
+ * @property {string} name - Fullname
+ * @property {string} rut - RUT/DNI
+ * @property {string} gender - Gender
+ * @property {string} address - Address
+ * @property {string} city - City
+ */
+/**
+ * @typedef {Object} Enterprise
+ * @property {string} name - Fullname
+ * @property {string} item - Item
+ * @property {string} subitem - Subitem
+ * @property {string} activity - Activity
+ * @property {string} rut - RUT/DNI
+ */
+/**
+ * @typedef {Person | Enterprise} Payload
+ */
+/**
+ * Get person/enterprise data from scrapping site.
+ *
+ * @param {Params} params -
+ * @returns {Promise<Array<Payload>>} -
+ * @example
+ * const results = await({ term: 'leonardo', type: 'person', key: 'name' })
+ */
 const getData = params => {
   return new Promise((resolve, reject) => {
     const paths = new Map([['rut', '/rut'], ['name', '/buscar']])
@@ -93,6 +126,14 @@ const getData = params => {
   })
 }
 
+/**
+ * Get person data from a valid RUT/DNI.
+ *
+ * @param {string} rut - RUT/DNI.
+ * @returns {Promise<Person>} -
+ * @example
+ * const person = await getPersonByRut('11.111.11-1')
+ */
 const getPersonByRut = async rut => {
   if (!validate(rut)) return null
   const params = {
@@ -105,6 +146,14 @@ const getPersonByRut = async rut => {
   return data[0]
 }
 
+/**
+ * Get enterprise data from a valid RUT/DNI.
+ *
+ * @param {string} rut - RUT/DNI.
+ * @returns {Promise<Enterprise>} -
+ * @example
+ * const person = await getPersonByRut('11.111.11-1')
+ */
 const getEnterpriseByRut = async rut => {
   if (!validate(rut)) return null
   const params = {
@@ -117,6 +166,14 @@ const getEnterpriseByRut = async rut => {
   return data[0]
 }
 
+/**
+ * Reverse a fullname.
+ *
+ * @param {string} name - Fullname.
+ * @returns {string} - Fulname in correct order.
+ * @example
+ * const fullname = reverse('PEREZ SOTO JUAN PEDRO')
+ */
 const reverse = name => {
   const words = name.split(' ')
   if (words.length !== 4) return name
@@ -126,10 +183,28 @@ const reverse = name => {
     .join(' ')
 }
 
+/**
+ * Titleize a fullname.
+ *
+ * @param {string} name - Fullname.
+ * @returns {string} - Fulname titleized.
+ * @example
+ * const fullname = reverse('PEREZ SOTO JUAN PEDRO')
+ */
 const titleize = name => {
   return name.toLowerCase().replace(/(?:^|\s|-)\S/g, c => c.toUpperCase())
 }
 
+/**
+ * Titleize a fullname.
+ *
+ * @param {string} name - Fulname to search.
+ * @param {Array<Payload>} list - List of person/enterprise data.
+ * @returns {Array<Payload>} - List of person/enterprise data sorted.
+ * @example
+ * const results = await getData({ term: 'leonardo', type: 'person', key: 'name' })
+ * const fullname = fuzzzySearch('leonardo', results)
+ */
 const fuzzzySearch = (name, list) => {
   const options = {
     shouldSort: true,
@@ -143,6 +218,15 @@ const fuzzzySearch = (name, list) => {
   return fuse.search(name)
 }
 
+/**
+ * Get person/enterprise data from RUT/DNI.
+ *
+ * @param {string} name - Name to search.
+ * @param {string} type - Type (person/enterprise).
+ * @returns {Promise<Array<Payload>>} - List of person/enterprise data.
+ * @example
+ * const results = await getData('leonardo', 'person')
+ */
 const getRut = async (name, type) => {
   const params = {
     type,
@@ -153,11 +237,27 @@ const getRut = async (name, type) => {
   return data
 }
 
+/**
+ * Get person data from name.
+ *
+ * @param {string} name - Name to search.
+ * @returns {Promise<Array<Person>>} - List of person data.
+ * @example
+ * const results = await getPersonByName('leonardo')
+ */
 const getPersonByName = async name => {
   const results = await getRut(name, 'person')
   return fuzzzySearch(name, results)
 }
 
+/**
+ * Get enterprise data from name.
+ *
+ * @param {string} name - Name to search.
+ * @returns {Promise<Array<Enterprise>>} - List of enterprise data.
+ * @example
+ * const results = await getEnterpriseByName('sushi')
+ */
 const getEnterpriseByName = async name => {
   const results = await getRut(name, 'enterprise')
   return fuzzzySearch(name, results)
