@@ -1,8 +1,9 @@
-const infoRut = require('info-rut');
+const infoRut = require('info-rut')
 
-// const rut = '11111111-1';
-const name = 'juan perez';
+// const rut = '11111111-1'
+const name = 'juan perez'
 
-// await infoRut.getFullName(rut);
-// await infoRut.getEnterpriseRut(name);
-await infoRut.getPersonRut(name);
+// await infoRut.getPersonByRut(rut)
+// await infoRut.getEnterpriseByRut(rut)
+// await infoRut.getEnterpriseByName(name)
+await infoRut.getPersonByName(name)

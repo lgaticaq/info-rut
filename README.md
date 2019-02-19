@@ -8,7 +8,7 @@
 [![dependency Status](https://img.shields.io/david/lgaticaq/info-rut.svg)](https://david-dm.org/lgaticaq/info-rut#info=dependencies)
 [![devDependency Status](https://img.shields.io/david/dev/lgaticaq/info-rut.svg)](https://david-dm.org/lgaticaq/info-rut#info=devDependencies)
 
-> Get full name from a valid RUT and RUT from full name
+> Get person or enterprise from a valid RUT or full name
 
 ## Installation
 
@@ -23,12 +23,12 @@ npm i -S info-rut
 const infoRut = require('info-rut')
 
 const rut = '11111111-1'
-
-infoRut.getFullName(rut).then(console.log).catch(console.error)
+infoRut.getPersonByRut(rut).then(console.log).catch(console.error)
+infoRut.getEnterpriseByRut(rut).then(console.log).catch(console.error)
 
 const name = 'juan perez'
-infoRut.getPersonRut(name).then(console.log).catch(console.error)
-infoRut.getEnterpriseRut(name).then(console.log).catch(console.error)
+infoRut.getPersonByName(name).then(console.log).catch(console.error)
+infoRut.getEnterpriseByName(name).then(console.log).catch(console.error)
 ```
 
 ## License
