@@ -10,7 +10,7 @@
     "test": "nyc mocha --exit"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "repository": {
     "type": "git",
