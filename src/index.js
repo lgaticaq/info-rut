@@ -45,47 +45,45 @@ const getData = params => {
           rawData += chunk
         })
         res.on('end', () => {
-          try {
-            const $ = cheerio.load(rawData)
-            const data = Array.from($('table tbody tr')).map(el => {
-              const keys = new Map([
-                [
-                  'person',
-                  new Map([
-                    [0, 'name'],
-                    [1, 'rut'],
-                    [2, 'gender'],
-                    [3, 'address'],
-                    [4, 'city']
-                  ])
-                ],
-                [
-                  'enterprise',
-                  new Map([
-                    [0, 'name'],
-                    [1, 'item'],
-                    [2, 'subitem'],
-                    [3, 'activity'],
-                    [4, 'rut']
-                  ])
-                ]
-              ])
-              return fromEntries(
-                Array.from($(el).find('td')).reduce((acc, el, index) => {
-                  const key = keys.get(params.type).get(index)
-                  let value = titleize($(el).text())
-                  if (key === 'name' && params.type === 'person') {
-                    value = reverse(titleize($(el).text()))
-                  }
-                  acc.set(key, value)
-                  return acc
-                }, new Map())
-              )
-            })
-            resolve(data)
-          } catch (err) {
-            reject(err)
-          }
+          const $ = cheerio.load(rawData)
+          const data = Array.from($('table tbody tr')).map(el => {
+            const keys = new Map([
+              [
+                'person',
+                new Map([
+                  [0, 'name'],
+                  [1, 'rut'],
+                  [2, 'gender'],
+                  [3, 'address'],
+                  [4, 'city']
+                ])
+              ],
+              [
+                'enterprise',
+                new Map([
+                  [0, 'name'],
+                  [1, 'item'],
+                  [2, 'subitem'],
+                  [3, 'activity'],
+                  [4, 'rut']
+                ])
+              ]
+            ])
+            return fromEntries(
+              Array.from($(el).find('td')).reduce((acc, el, index) => {
+                const key = keys.get(params.type).get(index)
+                let value = $(el).text()
+                if (key === 'name' && params.type === 'person') {
+                  value = reverse(titleize($(el).text()))
+                } else if (!['item', 'subitem', 'activity'].includes(key)) {
+                  value = titleize($(el).text())
+                }
+                acc.set(key, value)
+                return acc
+              }, new Map())
+            )
+          })
+          resolve(data)
         })
       }
     })
