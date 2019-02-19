@@ -2,161 +2,209 @@
 
 const { describe, it, beforeEach } = require('mocha')
 const { expect } = require('chai')
+const path = require('path')
 const nock = require('nock')
 const lib = require('../src')
 
 describe('info-rut', () => {
-  describe('getFullName valid rut', () => {
+  describe('getPersonByRut valid rut', () => {
     beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: '11111111-1' })
-        .reply(200, [{ rut: '111111111', name: 'anonymous' }])
+      nock('https://www.nombrerutyfirma.cl')
+        .post('/rut', { term: '11.111.111-1' })
+        .replyWithFile(
+          200,
+          path.join(__dirname, 'replies', 'person-success.html')
+        )
     })
     it('should return a full name', async () => {
-      const fullName = await lib.getFullName('11111111-1')
-      expect(fullName).to.eql('Anonymous')
+      const data = await lib.getPersonByRut('11111111-1')
+      expect(data).to.eql({
+        name: 'Juan Pedro Perez Soto',
+        rut: '11.111.111-1',
+        gender: 'Var',
+        address: 'Calle 1',
+        city: 'Santiago'
+      })
     })
   })
 
-  describe('getFullName invalid rut', () => {
-    beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: '11111111-1' })
-        .reply(200, [])
-    })
-    it('should return a error', async () => {
-      try {
-        await lib.getFullName('1')
-      } catch (err) {
-        expect(err).to.be.an('error')
-      }
+  describe('getPersonByRut invalid rut', () => {
+    it('should return a null', async () => {
+      const data = await lib.getPersonByRut('1')
+      expect(data).to.equal(null)
     })
   })
 
-  describe('getFullName not found rut', () => {
+  describe('getPersonByRut not found rut', () => {
     beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: '11111111-1' })
-        .reply(200, [])
+      nock('https://www.nombrerutyfirma.cl')
+        .post('/rut', { term: '11.111.111-1' })
+        .replyWithFile(200, path.join(__dirname, 'replies', 'person-fail.html'))
     })
-    it('should return a error', async () => {
-      try {
-        await lib.getFullName('11111111-1')
-      } catch (err) {
-        expect(err).to.be.an('error')
-      }
+    it('should return a null', async () => {
+      const data = await lib.getPersonByRut('11111111-1')
+      expect(data).to.equal(null)
     })
   })
 
-  describe('getPersonRut valid name', () => {
+  describe('getPersonByName valid name', () => {
     beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: 'perez' })
-        .reply(200, [
-          { name: 'perez soto juan pedro', rut: '111111111' },
-          { name: 'perez soto pedro', rut: '222222222' }
-        ])
+      nock('https://www.nombrerutyfirma.cl')
+        .post('/buscar', { term: 'perez' })
+        .replyWithFile(
+          200,
+          path.join(__dirname, 'replies', 'person-success.html')
+        )
     })
     it('should return a array of results', async () => {
-      const results = await lib.getPersonRut('perez')
-      expect(results).to.eql([
-        {
-          fullName: 'Perez Soto Pedro',
-          rut: '22.222.222-2',
-          url: `https://rutify.cl/rut/222222222`
-        },
-        {
-          fullName: 'Juan Pedro Perez Soto',
-          rut: '11.111.111-1',
-          url: `https://rutify.cl/rut/111111111`
-        }
-      ])
+      const results = await lib.getPersonByName('perez')
+      expect(results).to.deep.include({
+        name: 'Juan Pedro Perez Soto',
+        rut: '11.111.111-1',
+        gender: 'Var',
+        address: 'Calle 1',
+        city: 'Santiago'
+      })
+      expect(results).to.deep.include({
+        name: 'Perez Soto Juan',
+        rut: '22.222.222-2',
+        gender: 'Var',
+        address: 'Calle 2',
+        city: 'Santiago'
+      })
     })
   })
 
-  describe('getPersonRut invalid name', () => {
+  describe('getPersonByName invalid name', () => {
     beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: 'asdf' })
-        .reply(200, [])
+      nock('https://www.nombrerutyfirma.cl')
+        .post('/buscar', { term: 'asdf' })
+        .replyWithFile(200, path.join(__dirname, 'replies', 'person-fail.html'))
     })
     it('should return a empty results', async () => {
-      const results = await lib.getPersonRut('asdf')
+      const results = await lib.getPersonByName('asdf')
       expect(results).to.eql([])
     })
   })
 
-  describe('getEnterpriseRut valid name', () => {
+  describe('getEnterpriseByRut valid rut', () => {
     beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: 'sushi' })
-        .reply(200, [
-          { name: 'SUSHI CHILE', rut: '777777777' },
-          { name: 'SUSHI SANTIAGO', rut: '888888888' }
-        ])
+      nock('https://www.boletaofactura.cl')
+        .post('/rut', { term: '77.777.777-7' })
+        .replyWithFile(
+          200,
+          path.join(__dirname, 'replies', 'enterprise-success.html')
+        )
     })
-    it('should return a array of results', async () => {
-      const results = await lib.getEnterpriseRut('sushi')
-      expect(results).to.eql([
-        {
-          fullName: 'Sushi Chile',
-          rut: '77.777.777-7',
-          url: `https://rutify.cl/rut/777777777`
-        },
-        {
-          fullName: 'Sushi Santiago',
-          rut: '88.888.888-8',
-          url: `https://rutify.cl/rut/888888888`
-        }
-      ])
+    it('should return a result', async () => {
+      const results = await lib.getEnterpriseByRut('77777777-7')
+      expect(results).to.eql({
+        name: 'Sushi Chile',
+        item: 'I - Hoteles y Restaurantes',
+        subitem: '552 - Restaurantes, Bares y Cantinas',
+        activity: '552010 - Restaurantes',
+        rut: '77.777.777-7'
+      })
     })
   })
 
-  describe('getEnterpriseRut invalid name', () => {
+  describe('getEnterpriseByRut invalid rut', () => {
     beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: 'asdf' })
-        .reply(200, [])
+      nock('https://www.boletaofactura.cl')
+        .post('/rut', { term: '1' })
+        .replyWithFile(
+          200,
+          path.join(__dirname, 'replies', 'enterprise-fail.html')
+        )
+    })
+    it('should return a empty result', async () => {
+      const results = await lib.getEnterpriseByRut('1')
+      expect(results).to.equal(null)
+    })
+  })
+
+  describe('getEnterpriseByRut not found rut', () => {
+    beforeEach(() => {
+      nock('https://www.boletaofactura.cl')
+        .post('/rut', { term: '77.777.777-7' })
+        .replyWithFile(
+          200,
+          path.join(__dirname, 'replies', 'enterprise-fail.html')
+        )
+    })
+    it('should return a empty result', async () => {
+      const results = await lib.getEnterpriseByRut('77777777-7')
+      expect(results).to.equal(null)
+    })
+  })
+
+  describe('getEnterpriseByName valid name', () => {
+    beforeEach(() => {
+      nock('https://www.boletaofactura.cl')
+        .post('/buscar', { term: 'sushi' })
+        .replyWithFile(
+          200,
+          path.join(__dirname, 'replies', 'enterprise-success.html')
+        )
+    })
+    it('should return a array of results', async () => {
+      const results = await lib.getEnterpriseByName('sushi')
+      expect(results).to.deep.include({
+        name: 'Sushi Chile',
+        item: 'I - Hoteles y Restaurantes',
+        subitem: '552 - Restaurantes, Bares y Cantinas',
+        activity: '552010 - Restaurantes',
+        rut: '77.777.777-7'
+      })
+      expect(results).to.deep.include({
+        name: 'Sushi Santiago',
+        item: 'I - Hoteles y Restaurantes',
+        subitem: '552 - Restaurantes, Bares y Cantinas',
+        activity: '552010 - Restaurantes',
+        rut: '88.888.888-8'
+      })
+    })
+  })
+
+  describe('getEnterpriseByName invalid name', () => {
+    beforeEach(() => {
+      nock('https://www.boletaofactura.cl')
+        .post('/buscar', { term: 'asdf' })
+        .replyWithFile(
+          200,
+          path.join(__dirname, 'replies', 'enterprise-fail.html')
+        )
     })
     it('should return a empty results', async () => {
-      const results = await lib.getEnterpriseRut('asdf')
+      const results = await lib.getEnterpriseByName('asdf')
       expect(results).to.eql([])
+    })
+  })
+
+  describe('rsponse error', () => {
+    beforeEach(() => {
+      nock('https://www.boletaofactura.cl')
+        .post('/buscar', { term: 'asdf' })
+        .reply(500)
+    })
+    it('should return a empty results', async () => {
+      try {
+        await lib.getEnterpriseByName('asdf')
+      } catch (err) {
+        expect(err).to.be.an('error')
+      }
     })
   })
 
   describe('server error', () => {
     beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: 'asdf' })
-        .reply(500)
+      nock('https://www.boletaofactura.cl')
+        .post('/buscar', { term: 'asdf' })
+        .replyWithError('server error')
     })
     it('should return a empty results', async () => {
       try {
-        await lib.getEnterpriseRut('asdf')
-      } catch (err) {
-        expect(err).to.be.an('error')
-      }
-    })
-  })
-
-  describe('json error', () => {
-    beforeEach(() => {
-      nock('https://api.rutify.cl')
-        .get('/search')
-        .query({ q: 'asdf' })
-        .reply(200, 'bad json')
-    })
-    it('should return a empty results', async () => {
-      try {
-        await lib.getEnterpriseRut('asdf')
+        await lib.getEnterpriseByName('asdf')
       } catch (err) {
         expect(err).to.be.an('error')
       }
