@@ -1,3 +1,26 @@
+# [5.0.0](https://github.com/lgaticaq/info-rut/compare/v4.0.1...v5.0.0) (2019-02-19)
+
+
+### Bug Fixes
+
+* **api:** replace api.rutify.cl to www.nombrerutyfirma.cl ([6233d99](https://github.com/lgaticaq/info-rut/commit/6233d99))
+* **deps:** path 2 vulnerabilities ([15007da](https://github.com/lgaticaq/info-rut/commit/15007da))
+* **deps:** update fuse.js to v3.4.2 ([2d44630](https://github.com/lgaticaq/info-rut/commit/2d44630))
+* **package:** fix lock ([ace4368](https://github.com/lgaticaq/info-rut/commit/ace4368))
+* remove try/catch unused ([f707b2a](https://github.com/lgaticaq/info-rut/commit/f707b2a))
+
+
+### Features
+
+* **node:** set min node version to v10 ([cbfea53](https://github.com/lgaticaq/info-rut/commit/cbfea53))
+* **typescript:** add type definitions ([497d032](https://github.com/lgaticaq/info-rut/commit/497d032))
+
+
+### BREAKING CHANGES
+
+* **node:** Drop support to node version to v8
+* **api:** Rename all exported methods
+
 ## [4.0.1](https://github.com/lgaticaq/info-rut/compare/v4.0.0...v4.0.1) (2018-10-24)
 
 
