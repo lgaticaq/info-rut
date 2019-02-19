@@ -2,17 +2,38 @@
 
 const https = require('https')
 const querystring = require('querystring')
-const { validate, clean, format } = require('rut.js')
+const { validate, format } = require('rut.js')
 const Fuse = require('fuse.js')
+const cheerio = require('cheerio')
+const fromEntries = require('object.fromentries')
 
-const getData = data => {
+const getData = params => {
   return new Promise((resolve, reject) => {
-    const qs = querystring.stringify({ q: data })
+    const paths = new Map([['rut', '/rut'], ['name', '/buscar']])
+    const hostnames = new Map([
+      ['person', 'www.nombrerutyfirma.cl'],
+      ['enterprise', 'www.boletaofactura.cl']
+    ])
+    const postData = querystring.stringify({ term: params.term })
     const options = {
-      hostname: 'api.rutify.cl',
+      hostname: hostnames.get(params.type),
       port: 443,
-      path: `/search?${qs}`,
-      method: 'GET'
+      path: paths.get(params.key),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(postData),
+        'User-Agent':
+          'Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0',
+        Accept:
+          'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'es-CL,es;q=0.8,en-US;q=0.5,en;q=0.3',
+        Referer: `https://${hostnames.get(params.type)}/`,
+        Connection: 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        Pragma: 'no-cache',
+        'Cache-Control': 'no-cache'
+      }
     }
     const req = https.request(options, res => {
       if (res.statusCode !== 200) {
@@ -25,7 +46,43 @@ const getData = data => {
         })
         res.on('end', () => {
           try {
-            resolve(JSON.parse(rawData))
+            const $ = cheerio.load(rawData)
+            const data = Array.from($('table tbody tr')).map(el => {
+              const keys = new Map([
+                [
+                  'person',
+                  new Map([
+                    [0, 'name'],
+                    [1, 'rut'],
+                    [2, 'gender'],
+                    [3, 'address'],
+                    [4, 'city']
+                  ])
+                ],
+                [
+                  'enterprise',
+                  new Map([
+                    [0, 'name'],
+                    [1, 'item'],
+                    [2, 'subitem'],
+                    [3, 'activity'],
+                    [4, 'rut']
+                  ])
+                ]
+              ])
+              return fromEntries(
+                Array.from($(el).find('td')).reduce((acc, el, index) => {
+                  const key = keys.get(params.type).get(index)
+                  let value = titleize($(el).text())
+                  if (key === 'name' && params.type === 'person') {
+                    value = reverse(titleize($(el).text()))
+                  }
+                  acc.set(key, value)
+                  return acc
+                }, new Map())
+              )
+            })
+            resolve(data)
           } catch (err) {
             reject(err)
           }
@@ -33,16 +90,33 @@ const getData = data => {
       }
     })
     req.on('error', err => reject(err))
+    req.write(postData)
     req.end()
   })
 }
 
-const getFullName = data => {
-  const rut = validate(data) ? data : '1'
-  return getData(rut).then(data => {
-    if (data.length === 0) throw new Error('Not found full name')
-    return reverse(titleize(data[0].name))
-  })
+const getPersonByRut = async rut => {
+  if (!validate(rut)) return null
+  const params = {
+    type: 'person',
+    term: format(rut),
+    key: 'rut'
+  }
+  const data = await getData(params)
+  if (data.length === 0) return null
+  return data[0]
+}
+
+const getEnterpriseByRut = async rut => {
+  if (!validate(rut)) return null
+  const params = {
+    type: 'enterprise',
+    term: format(rut),
+    key: 'rut'
+  }
+  const data = await getData(params)
+  if (data.length === 0) return null
+  return data[0]
 }
 
 const reverse = name => {
@@ -65,46 +139,35 @@ const fuzzzySearch = (name, list) => {
     location: 0,
     distance: 100,
     maxPatternLength: 32,
-    keys: ['fullName']
+    keys: ['name']
   }
   const fuse = new Fuse(list, options)
   return fuse.search(name)
 }
 
-const getRut = name => {
-  return getData(name).then(data => {
-    return data.map(result => {
-      return {
-        url: `https://rutify.cl/rut/${clean(result.rut.toString())}`,
-        fullName: titleize(result.name),
-        rut: format(result.rut.toString())
-      }
-    })
-  })
+const getRut = async (name, type) => {
+  const params = {
+    type,
+    term: name.replace(/\s/g, '+'),
+    key: 'name'
+  }
+  const data = await getData(params)
+  return data
 }
 
-const isEnterprise = rut => {
-  return rut.length === 12 && parseInt(rut[0], 10) > 5
+const getPersonByName = async name => {
+  const results = await getRut(name, 'person')
+  return fuzzzySearch(name, results)
 }
 
-const getPersonRut = name => {
-  return getRut(name).then(results => {
-    const list = results.filter(x => !isEnterprise(x.rut)).map(x => {
-      return { url: x.url, fullName: reverse(x.fullName), rut: x.rut }
-    })
-    return fuzzzySearch(name, list)
-  })
-}
-
-const getEnterpriseRut = name => {
-  return getRut(name).then(results => {
-    const list = results.filter(x => isEnterprise(x.rut))
-    return fuzzzySearch(name, list)
-  })
+const getEnterpriseByName = async name => {
+  const results = await getRut(name, 'enterprise')
+  return fuzzzySearch(name, results)
 }
 
 module.exports = {
-  getFullName: getFullName,
-  getPersonRut: getPersonRut,
-  getEnterpriseRut: getEnterpriseRut
+  getPersonByRut: getPersonByRut,
+  getPersonByName: getPersonByName,
+  getEnterpriseByName: getEnterpriseByName,
+  getEnterpriseByRut: getEnterpriseByRut
 }
