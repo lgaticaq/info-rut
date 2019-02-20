@@ -1,10 +1,10 @@
-declare type Params = {
+export type Params = {
   type: string;
   key: string;
   term: string;
 };
 
-declare type Person = {
+export type Person = {
   name: string;
   rut: string;
   gender: string;
@@ -12,7 +12,7 @@ declare type Person = {
   city: string;
 };
 
-declare type Enterprise = {
+export type Enterprise = {
   name: string;
   item: string;
   subitem: string;
@@ -20,22 +20,22 @@ declare type Enterprise = {
   rut: string;
 };
 
-declare type Payload = Person | Enterprise;
+export type Payload = Person | Enterprise;
 
-declare function getData(params: Params): Promise<Payload[]>;
+export function getData(params: Params): Promise<Payload[]>;
 
-declare function getPersonByRut(rut: string): Promise<Person>;
+export function getPersonByRut(rut: string): Promise<Person>;
 
-declare function getEnterpriseByRut(rut: string): Promise<Enterprise>;
+export function getEnterpriseByRut(rut: string): Promise<Enterprise>;
 
-declare function reverse(name: string): string;
+export function reverse(name: string): string;
 
-declare function titleize(name: string): string;
+export function titleize(name: string): string;
 
-declare function fuzzzySearch(name: string, list: Payload[]): Payload[];
+export function fuzzzySearch(name: string, list: Payload[]): Payload[];
 
-declare function getRut(name: string, type: string): Promise<Payload[]>;
+export function getRut(name: string, type: string): Promise<Payload[]>;
 
-declare function getPersonByName(name: string): Promise<Person[]>;
+export function getPersonByName(name: string): Promise<Person[]>;
 
-declare function getEnterpriseByName(name: string): Promise<Enterprise[]>;
+export function getEnterpriseByName(name: string): Promise<Enterprise[]>;
