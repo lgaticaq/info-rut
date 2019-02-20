@@ -5,8 +5,12 @@
   "main": "src",
   "types": "src/types.d.ts",
   "scripts": {
-    "lint": "eslint . --fix",
-    "format": "prettier-standard '{src,test}/**/*.js'",
+    "lint:js": "eslint . --fix",
+    "format:js": "prettier-standard '{src,ts}/**/*.js'",
+    "lint:ts": "tslint --project . --fix '{src,ts}/**/*.ts'",
+    "format:ts": "prettier-standard '{src,ts}/**/*.ts'",
+    "lint": "npm run lint:js && npm run lint:ts",
+    "format": "npm run format:js && npm run format:ts",
     "commit": "commit",
     "test": "nyc mocha --exit"
   },
@@ -59,7 +63,11 @@
     "nyc": "13.3.0",
     "nyc-config-common": "1.0.1",
     "prettier-standard": "9.1.1",
-    "semantic-release": "15.13.3"
+    "semantic-release": "15.13.3",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.3.3"
   },
   "eslintConfig": {
     "extends": [
@@ -96,6 +104,11 @@
     "linters": {
       "{src,test}/**/*.js": [
         "eslint --fix",
+        "prettier-standard",
+        "git add"
+      ],
+      "{src,test}/**/*.ts": [
+        "tslint --project . --fix",
         "prettier-standard",
         "git add"
       ]
