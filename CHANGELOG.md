@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/lgaticaq/info-rut/compare/v5.0.0...v5.0.1) (2019-02-20)
+
+
+### Bug Fixes
+
+* **typescript:** export all types ([9e6dd74](https://github.com/lgaticaq/info-rut/commit/9e6dd74))
+
 # [5.0.0](https://github.com/lgaticaq/info-rut/compare/v4.0.1...v5.0.0) (2019-02-19)
 
 
