@@ -23,6 +23,9 @@ jobs:
       before_script:
         - npm i -g @commitlint/travis-cli
       script: commitlint-travis
+    - stage: lint
+      name: tslint
+      script: npm run lint:ts
     - stage: test
       node_js:
         - "11"
