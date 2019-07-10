@@ -12,7 +12,9 @@
     "lint": "npm run lint:js && npm run lint:ts",
     "format": "npm run format:js && npm run format:ts",
     "commit": "commit",
-    "test": "nyc mocha --exit"
+    "test": "nyc mocha --exit",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": ">=10"
@@ -34,7 +36,8 @@
     "cheerio": "^1.0.0-rc.2",
     "fuse.js": "^3.4.2",
     "object.fromentries": "^2.0.0",
-    "rut.js": "^1.0.1"
+    "rut.js": "^1.0.1",
+    "snyk": "^1.192.4"
   },
   "devDependencies": {
     "@commitlint/cli": "8.0.0",
@@ -131,5 +134,6 @@
   },
   "release": {
     "extends": "npm-github-config"
-  }
+  },
+  "snyk": true
 }
