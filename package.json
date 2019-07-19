@@ -52,7 +52,7 @@
     "eslint-config-jsdoc-strict": "2.0.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "2.18.0",
+    "eslint-plugin-import": "2.18.1",
     "eslint-plugin-jsdoc": "15.3.4",
     "eslint-plugin-node": "9.1.0",
     "eslint-plugin-promise": "4.2.1",
