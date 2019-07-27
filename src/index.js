@@ -8,26 +8,26 @@ const cheerio = require('cheerio')
 const fromEntries = require('object.fromentries')
 
 /**
- * @typedef {Object} Params
- * @property {string} type - Type (person, enterprise)
- * @property {string} key - Key path (rut, name)
- * @property {string} term - Search term
+ * @typedef {object} Params
+ * @property {string} type - Type (person, enterprise).
+ * @property {string} key - Key path (rut, name).
+ * @property {string} term - Search term.
  */
 /**
- * @typedef {Object} Person
- * @property {string} name - Fullname
- * @property {string} rut - RUT/DNI
- * @property {string} gender - Gender
- * @property {string} address - Address
- * @property {string} city - City
+ * @typedef {object} Person
+ * @property {string} name - Fullname.
+ * @property {string} rut - RUT/DNI.
+ * @property {string} gender - Gender.
+ * @property {string} address - Address.
+ * @property {string} city - City.
  */
 /**
- * @typedef {Object} Enterprise
- * @property {string} name - Fullname
- * @property {string} item - Item
- * @property {string} subitem - Subitem
- * @property {string} activity - Activity
- * @property {string} rut - RUT/DNI
+ * @typedef {object} Enterprise
+ * @property {string} name - Fullname.
+ * @property {string} item - Item.
+ * @property {string} subitem - Subitem.
+ * @property {string} activity - Activity.
+ * @property {string} rut - RUT/DNI.
  */
 /**
  * @typedef {Person | Enterprise} Payload
