@@ -11,10 +11,8 @@
     "format:ts": "prettier-standard '{src,ts}/**/*.ts'",
     "lint": "npm run lint:js && npm run lint:ts",
     "format": "npm run format:js && npm run format:ts",
-    "commit": "commit",
     "test": "nyc mocha --exit",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "snyk-protect": "snyk protect"
   },
   "engines": {
     "node": ">=10"
@@ -33,16 +31,14 @@
   },
   "homepage": "https://github.com/lgaticaq/info-rut#readme",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "fuse.js": "^3.4.2",
+    "cheerio": "^1.0.0-rc.3",
+    "fuse.js": "^3.4.5",
     "object.fromentries": "^2.0.0",
-    "rut.js": "^1.0.1",
-    "snyk": "^1.192.4"
+    "rut.js": "^1.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "8.1.0",
     "@commitlint/config-conventional": "8.1.0",
-    "@commitlint/prompt-cli": "8.1.0",
     "@semantic-release/changelog": "3.0.4",
     "@semantic-release/git": "7.0.16",
     "@semantic-release/github": "5.4.2",
@@ -66,7 +62,8 @@
     "nyc": "14.1.1",
     "nyc-config-common": "1.0.1",
     "prettier-standard": "9.1.1",
-    "semantic-release": "15.13.18",
+    "semantic-release": "15.13.19",
+    "snyk": "1.199.2",
     "tslint": "5.18.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-config-standard": "8.0.1",
@@ -104,18 +101,16 @@
     }
   },
   "lint-staged": {
-    "linters": {
-      "{src,test}/**/*.js": [
-        "eslint --fix",
-        "prettier-standard",
-        "git add"
-      ],
-      "{src,test}/**/*.ts": [
-        "tslint --project . --fix",
-        "prettier-standard",
-        "git add"
-      ]
-    }
+    "{src,test}/**/*.js": [
+      "eslint --fix",
+      "prettier-standard",
+      "git add"
+    ],
+    "{src,test}/**/*.ts": [
+      "tslint --project . --fix",
+      "prettier-standard",
+      "git add"
+    ]
   },
   "tonicExampleFilename": "example.js",
   "renovate": {
