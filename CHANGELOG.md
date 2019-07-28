@@ -1,3 +1,11 @@
+## [5.0.2](https://github.com/lgaticaq/info-rut/compare/v5.0.1...v5.0.2) (2019-07-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([5f3e163](https://github.com/lgaticaq/info-rut/commit/5f3e163))
+* .snyk, package.json & package-lock.json to reduce vulnerabilities ([6232996](https://github.com/lgaticaq/info-rut/commit/6232996))
+
 ## [5.0.1](https://github.com/lgaticaq/info-rut/compare/v5.0.0...v5.0.1) (2019-02-20)
 
 
