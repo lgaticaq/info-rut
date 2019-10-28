@@ -63,7 +63,7 @@
     "nyc-config-common": "1.0.1",
     "prettier-standard": "15.0.1",
     "semantic-release": "15.13.28",
-    "snyk": "1.239.0",
+    "snyk": "1.239.2",
     "tslint": "5.20.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-config-standard": "8.0.1",
