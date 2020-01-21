@@ -64,7 +64,7 @@
     "prettier-standard": "15.0.1",
     "semantic-release": "15.14.0",
     "snyk": "1.279.0",
-    "tslint": "5.20.1",
+    "tslint": "6.0.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-config-standard": "8.0.1",
     "typescript": "3.7.5"
