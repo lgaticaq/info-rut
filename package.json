@@ -12,7 +12,8 @@
     "lint": "npm run lint:js && npm run lint:ts",
     "format": "npm run format:js && npm run format:ts",
     "test": "nyc mocha --exit",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": ">=10"
@@ -34,7 +35,8 @@
     "cheerio": "^1.0.0-rc.3",
     "fuse.js": "^3.4.5",
     "object.fromentries": "^2.0.0",
-    "rut.js": "^1.0.1"
+    "rut.js": "^1.0.1",
+    "snyk": "^1.319.0"
   },
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
@@ -63,7 +65,6 @@
     "nyc-config-common": "1.0.1",
     "prettier-standard": "15.0.1",
     "semantic-release": "15.14.0",
-    "snyk": "1.319.0",
     "tslint": "5.20.1",
     "tslint-config-prettier": "1.18.0",
     "tslint-config-standard": "8.0.1",
