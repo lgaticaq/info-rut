@@ -1,3 +1,11 @@
+## [5.0.3](https://github.com/lgaticaq/info-rut/compare/v5.0.2...v5.0.3) (2020-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency fuse.js to v6 ([0a1cf10](https://github.com/lgaticaq/info-rut/commit/0a1cf104ceb111c4ab5b932891e673931323430e))
+* **scrapping:** update hostnames ([37899d4](https://github.com/lgaticaq/info-rut/commit/37899d4367739f7d097f5e536116a3c246de68c7))
+
 ## [5.0.2](https://github.com/lgaticaq/info-rut/compare/v5.0.1...v5.0.2) (2019-07-28)
 
 
