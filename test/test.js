@@ -9,7 +9,7 @@ const lib = require('../src')
 describe('info-rut', () => {
   describe('getPersonByRut valid rut', () => {
     beforeEach(() => {
-      nock('https://www.nombrerutyfirma.cl')
+      nock('https://www.nombrerutyfirma.com')
         .post('/rut', { term: '11.111.111-1' })
         .replyWithFile(
           200,
@@ -37,7 +37,7 @@ describe('info-rut', () => {
 
   describe('getPersonByRut not found rut', () => {
     beforeEach(() => {
-      nock('https://www.nombrerutyfirma.cl')
+      nock('https://www.nombrerutyfirma.com')
         .post('/rut', { term: '11.111.111-1' })
         .replyWithFile(200, path.join(__dirname, 'replies', 'person-fail.html'))
     })
@@ -49,7 +49,7 @@ describe('info-rut', () => {
 
   describe('getPersonByName valid name', () => {
     beforeEach(() => {
-      nock('https://www.nombrerutyfirma.cl')
+      nock('https://www.nombrerutyfirma.com')
         .post('/buscar', { term: 'perez' })
         .replyWithFile(
           200,
@@ -77,7 +77,7 @@ describe('info-rut', () => {
 
   describe('getPersonByName invalid name', () => {
     beforeEach(() => {
-      nock('https://www.nombrerutyfirma.cl')
+      nock('https://www.nombrerutyfirma.com')
         .post('/buscar', { term: 'asdf' })
         .replyWithFile(200, path.join(__dirname, 'replies', 'person-fail.html'))
     })
@@ -89,7 +89,7 @@ describe('info-rut', () => {
 
   describe('getEnterpriseByRut valid rut', () => {
     beforeEach(() => {
-      nock('https://www.boletaofactura.cl')
+      nock('https://www.boletaofactura.com')
         .post('/rut', { term: '77.777.777-7' })
         .replyWithFile(
           200,
@@ -110,7 +110,7 @@ describe('info-rut', () => {
 
   describe('getEnterpriseByRut invalid rut', () => {
     beforeEach(() => {
-      nock('https://www.boletaofactura.cl')
+      nock('https://www.boletaofactura.com')
         .post('/rut', { term: '1' })
         .replyWithFile(
           200,
@@ -125,7 +125,7 @@ describe('info-rut', () => {
 
   describe('getEnterpriseByRut not found rut', () => {
     beforeEach(() => {
-      nock('https://www.boletaofactura.cl')
+      nock('https://www.boletaofactura.com')
         .post('/rut', { term: '77.777.777-7' })
         .replyWithFile(
           200,
@@ -140,7 +140,7 @@ describe('info-rut', () => {
 
   describe('getEnterpriseByName valid name', () => {
     beforeEach(() => {
-      nock('https://www.boletaofactura.cl')
+      nock('https://www.boletaofactura.com')
         .post('/buscar', { term: 'sushi' })
         .replyWithFile(
           200,
@@ -168,7 +168,7 @@ describe('info-rut', () => {
 
   describe('getEnterpriseByName invalid name', () => {
     beforeEach(() => {
-      nock('https://www.boletaofactura.cl')
+      nock('https://www.boletaofactura.com')
         .post('/buscar', { term: 'asdf' })
         .replyWithFile(
           200,
@@ -183,7 +183,7 @@ describe('info-rut', () => {
 
   describe('rsponse error', () => {
     beforeEach(() => {
-      nock('https://www.boletaofactura.cl')
+      nock('https://www.boletaofactura.com')
         .post('/buscar', { term: 'asdf' })
         .reply(500)
     })
@@ -198,7 +198,7 @@ describe('info-rut', () => {
 
   describe('server error', () => {
     beforeEach(() => {
-      nock('https://www.boletaofactura.cl')
+      nock('https://www.boletaofactura.com')
         .post('/buscar', { term: 'asdf' })
         .replyWithError('server error')
     })
