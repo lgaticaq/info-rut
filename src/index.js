@@ -218,7 +218,7 @@ const fuzzzySearch = (name, list) => {
     keys: ['name']
   }
   const fuse = new Fuse(list, options)
-  return fuse.search(name)
+  return fuse.search(name).map(({ item }) => item)
 }
 
 /**
