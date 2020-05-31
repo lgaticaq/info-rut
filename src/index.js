@@ -42,10 +42,13 @@ const fromEntries = require('object.fromentries')
  */
 const getData = params => {
   return new Promise((resolve, reject) => {
-    const paths = new Map([['rut', '/rut'], ['name', '/buscar']])
+    const paths = new Map([
+      ['rut', '/rut'],
+      ['name', '/buscar']
+    ])
     const hostnames = new Map([
-      ['person', 'www.nombrerutyfirma.cl'],
-      ['enterprise', 'www.boletaofactura.cl']
+      ['person', 'www.nombrerutyfirma.com'],
+      ['enterprise', 'www.boletaofactura.com']
     ])
     const postData = querystring.stringify({ term: params.term })
     const options = {
