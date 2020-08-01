@@ -44,7 +44,7 @@
     "@semantic-release/github": "7.0.7",
     "@semantic-release/npm": "7.0.5",
     "chai": "4.2.0",
-    "eslint": "7.5.0",
+    "eslint": "7.6.0",
     "eslint-config-jsdoc-strict": "2.0.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-standard": "14.1.1",
