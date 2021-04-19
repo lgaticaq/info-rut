@@ -1,6 +1,6 @@
 {
   "name": "info-rut",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "description": "Get person or enterprise from a valid RUT or full name",
   "main": "src",
   "types": "src/types.d.ts",

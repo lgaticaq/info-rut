@@ -1,3 +1,10 @@
+## [5.0.4](https://github.com/lgaticaq/info-rut/compare/v5.0.3...v5.0.4) (2021-04-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency cheerio to ^1.0.0-rc ([c12ee4e](https://github.com/lgaticaq/info-rut/commit/c12ee4e818925e1a164800f9bf843c64575c9706))
+
 ## [5.0.3](https://github.com/lgaticaq/info-rut/compare/v5.0.2...v5.0.3) (2020-05-31)
 
 
