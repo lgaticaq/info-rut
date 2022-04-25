@@ -4,7 +4,7 @@ cache:
     - ~/.npm
     - .nyc_output
 node_js:
-  - "12.7.0"
+  - "12.22.12"
 notifications:
   email: false
 stages:
@@ -28,7 +28,7 @@ jobs:
       script: npm run lint:ts
     - stage: test
       node_js:
-        - "12.7.0"
+        - "12.22.12"
         - "10.24.1"
       script: npm t
     - stage: coverage
